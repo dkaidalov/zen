@@ -321,7 +321,6 @@ public:
     }
 #else
 
-
     bool operator()(const CKeyID &keyID) const {
         script->clear();
         CBlockIndex *currentBlock = chainActive.Tip();
