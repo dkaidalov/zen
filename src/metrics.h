@@ -71,7 +71,8 @@ void ThreadShowMetricsScreen();
  * Rendering options:
  * Logo: img2txt -W 90 -H 20 -f utf8 -d none -g design.png >> design.ansi
  */
-const std::string METRICS_ART =
+const std::string METRICS_ART = "";
+/*
 "                             [0;1;37;97;47m;S[0m                                                                \n"
 "                         [0;1;37;97;47mS[0;1;30;90;47m:%%%%%t[0;1;37;97;47m;[0m                                                             \n"
 "                       [0;1;31;91;43m8[0;37;43m@[0;33;47m8[0;1;30;90;47m%%%%%%%S[0;33;5;40;100m.@[0m                                                           \n"
@@ -92,3 +93,4 @@ const std::string METRICS_ART =
 "                       [0;1;33;93;43m.[0;33;5;41;101m;::::[0;31;43m@[0;32;40m.....t[0m                                                           \n"
 "                          [0;1;33;93;47m8[0;33;5;41;101m;:[0;31;43m@[0;32;40m..[0;30;5;40;100m8[0m                                                              \n"
 "                                                                                               \n";
+*/
