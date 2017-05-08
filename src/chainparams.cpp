@@ -36,7 +36,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        strCurrencyUnits = "ZCL";
+        strCurrencyUnits = "ZEN";
         consensus.fCoinbaseMustBeProtected = true;
         consensus.nSubsidySlowStartInterval = 2;
         consensus.nSubsidyHalvingInterval = 840000;
@@ -51,14 +51,16 @@ public:
         consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         /**
-         * The message start string should be awesome! ⓩ❤
+         * ZEN Network Magic Start Value
          */
-        pchMessageStart[0] = 0x24;
-        pchMessageStart[1] = 0xe9;
-        pchMessageStart[2] = 0x27;
-        pchMessageStart[3] = 0x64;
+
+        pchMessageStart[0] = 0x63;
+        pchMessageStart[1] = 0x61;
+        pchMessageStart[2] = 0x73;
+        pchMessageStart[3] = 0x68;
+
         vAlertPubKey = ParseHex("048679fb891b15d0cada9692047fd0ae26ad8bfb83fabddbb50334ee5bc0683294deb410be20513c5af6e7b9cec717ade82b27080ee6ef9a245c36a795ab044bb3");
-        nDefaultPort = 8133;
+        nDefaultPort = 8033;
         nMinerThreads = 0;
         nMaxTipAge = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
@@ -97,21 +99,21 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("zclassic.org", "dnsseed.zclassic.org")); // zclassic
-	vSeeds.push_back(CDNSSeedData("indieonion.org", "dnsseed.indieonion.org")); // @IndieOnion
-        vSeeds.push_back(CDNSSeedData("rotorproject.org", "dnsseed.rotorproject.org")); // @IndieOnion
+        vSeeds.push_back(CDNSSeedData("zencash.io", "mainnet-zen.zencash.io"));
+        vSeeds.push_back(CDNSSeedData("zdeveloper.org", "mainnet-zen.zdeveloper.org"));
+        vSeeds.push_back(CDNSSeedData("rotorproject.org", "mainnet-zen.rotorproject.org"));
 
-        // guarantees the first 2 characters, when base58 encoded, are "t1"
-        base58Prefixes[PUBKEY_ADDRESS]     = {0x1C,0xB8};
-        // guarantees the first 2 characters, when base58 encoded, are "t3"
-        base58Prefixes[SCRIPT_ADDRESS]     = {0x1C,0xBD};
+        // guarantees the first 2 characters, when base58 encoded, are "t5"
+        base58Prefixes[PUBKEY_ADDRESS]     = {0x1C,0xBF};
+        // guarantees the first 2 characters, when base58 encoded, are "t7"
+        base58Prefixes[SCRIPT_ADDRESS]     = {0x1C,0xC1};
         // the first character, when base58 encoded, is "5" or "K" or "L" (as in Bitcoin)
         base58Prefixes[SECRET_KEY]         = {0x80};
         // do not rely on these BIP32 prefixes; they are not specified and may change
         base58Prefixes[EXT_PUBLIC_KEY]     = {0x04,0x88,0xB2,0x1E};
         base58Prefixes[EXT_SECRET_KEY]     = {0x04,0x88,0xAD,0xE4};
-        // guarantees the first 2 characters, when base58 encoded, are "zc"
-        base58Prefixes[ZCPAYMENT_ADDRRESS] = {0x16,0x9A};
+        // guarantees the first 2 characters, when base58 encoded, are "zn"
+        base58Prefixes[ZCPAYMENT_ADDRRESS] = {0x16,0xA5};
         // guarantees the first 2 characters, when base58 encoded, are "SK"
         base58Prefixes[ZCSPENDING_KEY]     = {0xAB,0x36};
 
@@ -205,19 +207,19 @@ class CTestNetParams : public CMainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        strCurrencyUnits = "ZCT";
+        strCurrencyUnits = "ZNT";
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
         consensus.nMajorityWindow = 400;
         consensus.powLimit = uint256S("07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.fPowAllowMinDifficultyBlocks = true;
-        pchMessageStart[0] = 0xfa;
-        pchMessageStart[1] = 0x1a;
-        pchMessageStart[2] = 0xf9;
-        pchMessageStart[3] = 0xbf;
+        pchMessageStart[0] = 0xbf;
+        pchMessageStart[1] = 0xf2;
+        pchMessageStart[2] = 0xcd;
+        pchMessageStart[3] = 0xe6;
         vAlertPubKey = ParseHex("048679fb891b15d0cada9692047fd0ae26ad8bfb83fabddbb50334ee5bc0683294deb410be20513c5af6e7b9cec717ade82b27080ee6ef9a245c36a795ab044bb3");
-        nDefaultPort = 18233;
+        nDefaultPort = 18033;
         nMinerThreads = 0;
         nPruneAfterHeight = 1000;
 
@@ -231,12 +233,14 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("rotorproject.org", "test-dnsseed.rotorproject.org")); // Zclassic
+        vSeeds.push_back(CDNSSeedData("zencash.io", "mainnet-zen.zencash.io"));
+        vSeeds.push_back(CDNSSeedData("zdeveloper.org", "mainnet-zen.zdeveloper.org"));
+        vSeeds.push_back(CDNSSeedData("rotorproject.org", "mainnet-zen.rotorproject.org"));
 
-        // guarantees the first 2 characters, when base58 encoded, are "tm"
-        base58Prefixes[PUBKEY_ADDRESS]     = {0x1D,0x25};
-        // guarantees the first 2 characters, when base58 encoded, are "t2"
-        base58Prefixes[SCRIPT_ADDRESS]     = {0x1C,0xBA};
+        // guarantees the first 2 characters, when base58 encoded, are "tn"
+        base58Prefixes[PUBKEY_ADDRESS]     = {0x1D,0x26};
+        // guarantees the first 2 characters, when base58 encoded, are "t4"
+        base58Prefixes[SCRIPT_ADDRESS]     = {0x1C,0xBC};
         // the first character, when base58 encoded, is "9" or "c" (as in Bitcoin)
         base58Prefixes[SECRET_KEY]         = {0xEF};
         // do not rely on these BIP32 prefixes; they are not specified and may change
@@ -303,10 +307,10 @@ public:
         assert(maxUint/UintToArith256(consensus.powLimit) >= consensus.nPowAveragingWindow);
         consensus.nPowMaxAdjustDown = 0; // Turn off adjustment down
         consensus.nPowMaxAdjustUp = 0; // Turn off adjustment up
-        pchMessageStart[0] = 0xaa;
-        pchMessageStart[1] = 0xe8;
-        pchMessageStart[2] = 0x3f;
-        pchMessageStart[3] = 0x5f;
+        pchMessageStart[0] = 0x2f;
+        pchMessageStart[1] = 0x54;
+        pchMessageStart[2] = 0xcc;
+        pchMessageStart[3] = 0x9d;
         nMinerThreads = 1;
         nMaxTipAge = 24 * 60 * 60;
         const size_t N = 48, K = 5;
