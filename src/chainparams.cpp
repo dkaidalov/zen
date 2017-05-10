@@ -15,6 +15,15 @@
 
 #include "base58.h"
 
+namespace MyNamespace {
+    #define WN 48
+    #define WK 5
+    #include "zen/src/pow/tromp/equi.h"
+    #include "pow/tromp/equi_miner.h"
+    #include "crypto/equihash.h"
+    #include "metrics.h"
+}
+
 using namespace std;
 
 #include "chainparamsseeds.h"
@@ -137,65 +146,124 @@ public:
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
-        // Founders reward script expects a vector of 2-of-3 multisig addresses
+        // Allocation script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
-//          "t3Vz22vK5z2LcKEdg16Yv4FFneEL1zg9ojd", /* main-index: 0*/
-//            "t3cL9AucCajm3HXDhb5jBnJK2vapVoXsop3", /* main-index: 1*/
-//            "t3fqvkzrrNaMcamkQMwAyHRjfDdM2xQvDTR", /* main-index: 2*/
-//            "t3TgZ9ZT2CTSK44AnUPi6qeNaHa2eC7pUyF", /* main-index: 3*/
-//            "t3SpkcPQPfuRYHsP5vz3Pv86PgKo5m9KVmx", /* main-index: 4*/
-//            "t3Xt4oQMRPagwbpQqkgAViQgtST4VoSWR6S", /* main-index: 5*/
-//            "t3ayBkZ4w6kKXynwoHZFUSSgXRKtogTXNgb", /* main-index: 6*/
-//            "t3adJBQuaa21u7NxbR8YMzp3km3TbSZ4MGB", /* main-index: 7*/
-//            "t3K4aLYagSSBySdrfAGGeUd5H9z5Qvz88t2", /* main-index: 8*/
-//            "t3RYnsc5nhEvKiva3ZPhfRSk7eyh1CrA6Rk", /* main-index: 9*/
-//            "t3Ut4KUq2ZSMTPNE67pBU5LqYCi2q36KpXQ", /* main-index: 10*/
-//            "t3ZnCNAvgu6CSyHm1vWtrx3aiN98dSAGpnD", /* main-index: 11*/
-//            "t3fB9cB3eSYim64BS9xfwAHQUKLgQQroBDG", /* main-index: 12*/
-//            "t3cwZfKNNj2vXMAHBQeewm6pXhKFdhk18kD", /* main-index: 13*/
-//            "t3YcoujXfspWy7rbNUsGKxFEWZqNstGpeG4", /* main-index: 14*/
-//            "t3bLvCLigc6rbNrUTS5NwkgyVrZcZumTRa4", /* main-index: 15*/
-//            "t3VvHWa7r3oy67YtU4LZKGCWa2J6eGHvShi", /* main-index: 16*/
-//            "t3eF9X6X2dSo7MCvTjfZEzwWrVzquxRLNeY", /* main-index: 17*/
-//            "t3esCNwwmcyc8i9qQfyTbYhTqmYXZ9AwK3X", /* main-index: 18*/
-//            "t3M4jN7hYE2e27yLsuQPPjuVek81WV3VbBj", /* main-index: 19*/
-//            "t3gGWxdC67CYNoBbPjNvrrWLAWxPqZLxrVY", /* main-index: 20*/
-//            "t3LTWeoxeWPbmdkUD3NWBquk4WkazhFBmvU", /* main-index: 21*/
-//            "t3P5KKX97gXYFSaSjJPiruQEX84yF5z3Tjq", /* main-index: 22*/
-//            "t3f3T3nCWsEpzmD35VK62JgQfFig74dV8C9", /* main-index: 23*/
-//            "t3Rqonuzz7afkF7156ZA4vi4iimRSEn41hj", /* main-index: 24*/
-//            "t3fJZ5jYsyxDtvNrWBeoMbvJaQCj4JJgbgX", /* main-index: 25*/
-//            "t3Pnbg7XjP7FGPBUuz75H65aczphHgkpoJW", /* main-index: 26*/
-//            "t3WeKQDxCijL5X7rwFem1MTL9ZwVJkUFhpF", /* main-index: 27*/
-//            "t3Y9FNi26J7UtAUC4moaETLbMo8KS1Be6ME", /* main-index: 28*/
-//            "t3aNRLLsL2y8xcjPheZZwFy3Pcv7CsTwBec", /* main-index: 29*/
-//            "t3gQDEavk5VzAAHK8TrQu2BWDLxEiF1unBm", /* main-index: 30*/
-//            "t3Rbykhx1TUFrgXrmBYrAJe2STxRKFL7G9r", /* main-index: 31*/
-//            "t3aaW4aTdP7a8d1VTE1Bod2yhbeggHgMajR", /* main-index: 32*/
-//            "t3YEiAa6uEjXwFL2v5ztU1fn3yKgzMQqNyo", /* main-index: 33*/
-//            "t3g1yUUwt2PbmDvMDevTCPWUcbDatL2iQGP", /* main-index: 34*/
-//            "t3dPWnep6YqGPuY1CecgbeZrY9iUwH8Yd4z", /* main-index: 35*/
-//            "t3QRZXHDPh2hwU46iQs2776kRuuWfwFp4dV", /* main-index: 36*/
-//            "t3enhACRxi1ZD7e8ePomVGKn7wp7N9fFJ3r", /* main-index: 37*/
-//            "t3PkLgT71TnF112nSwBToXsD77yNbx2gJJY", /* main-index: 38*/
-//            "t3LQtHUDoe7ZhhvddRv4vnaoNAhCr2f4oFN", /* main-index: 39*/
-//            "t3fNcdBUbycvbCtsD2n9q3LuxG7jVPvFB8L", /* main-index: 40*/
-//            "t3dKojUU2EMjs28nHV84TvkVEUDu1M1FaEx", /* main-index: 41*/
-//            "t3aKH6NiWN1ofGd8c19rZiqgYpkJ3n679ME", /* main-index: 42*/
-//            "t3MEXDF9Wsi63KwpPuQdD6by32Mw2bNTbEa", /* main-index: 43*/
-//            "t3WDhPfik343yNmPTqtkZAoQZeqA83K7Y3f", /* main-index: 44*/
-//            "t3PSn5TbMMAEw7Eu36DYctFezRzpX1hzf3M", /* main-index: 45*/
-//            "t3R3Y5vnBLrEn8L6wFjPjBLnxSUQsKnmFpv", /* main-index: 46*/
-//            "t3Pcm737EsVkGTbhsu2NekKtJeG92mvYyoN", /* main-index: 47*/
-////            "t3PZ9PPcLzgL57XRSG5ND4WNBC9UTFb8DXv", /* main-index: 48*/
-////            "t3L1WgcyQ95vtpSgjHfgANHyVYvffJZ9iGb", /* main-index: 49*/
-////            "t3JtoXqsv3FuS7SznYCd5pZJGU9di15mdd7", /* main-index: 50*/
-////            "t3hLJHrHs3ytDgExxr1mD8DYSrk1TowGV25", /* main-index: 51*/
-////            "t3fmYHU2DnVaQgPhDs6TMFVmyC3qbWEWgXN", /* main-index: 52*/
-////            "t3T4WmAp6nrLkJ24iPpGeCe1fSWTPv47ASG", /* main-index: 53*/
-////            "t3fP6GrDM4QVwdjFhmCxGNbe7jXXXSDQ5dv", /* main-index: 54*/
-};
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 0*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 1*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 2*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 3*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 4*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 5*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 6*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 7*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 8*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 9*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 10*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 11*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 12*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 13*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 14*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 15*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 16*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 17*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 18*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 19*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 20*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 21*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 22*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 23*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 24*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 25*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 26*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 27*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 28*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 29*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 30*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 31*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 32*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 33*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 34*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 35*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 36*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 37*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 38*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 39*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 40*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 41*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 42*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 43*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 44*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 45*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 46*/
+            "t5DiT2y2b5dBSzr51dQSVS2KgsGHYCRY5Js", /* main-index: 47*/
+            //"t3PZ9PPcLzgL57XRSG5ND4WNBC9UTFb8DXv", /* main-index: 48*/
+            //"t3L1WgcyQ95vtpSgjHfgANHyVYvffJZ9iGb", /* main-index: 49*/
+            //"t3JtoXqsv3FuS7SznYCd5pZJGU9di15mdd7", /* main-index: 50*/
+            //"t3hLJHrHs3ytDgExxr1mD8DYSrk1TowGV25", /* main-index: 51*/
+            //"t3fmYHU2DnVaQgPhDs6TMFVmyC3qbWEWgXN", /* main-index: 52*/
+            //"t3T4WmAp6nrLkJ24iPpGeCe1fSWTPv47ASG", /* main-index: 53*/
+            //"t3fP6GrDM4QVwdjFhmCxGNbe7jXXXSDQ5dv", /* main-index: 54*/
+	};
+        // Allocation script expects a vector of 2-of-3 multisig addresses
+        vDAOAddress = {
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 0*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 1*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 2*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 3*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 4*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 5*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 6*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 7*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 8*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 9*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 10*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 11*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 12*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 13*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 14*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 15*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 16*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 17*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 18*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 19*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 20*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 21*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 22*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 23*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 24*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 25*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 26*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 27*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 28*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 29*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 30*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 31*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 32*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 33*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 34*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 35*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 36*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 37*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 38*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 39*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 40*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 41*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 42*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 43*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 44*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 45*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 46*/
+            "t4yaWxgRwMSJyJM1mrwQmb5ftDuyGUCQsht", /* main-index: 47*/
+            //"t3PZ9PPcLzgL57XRSG5ND4WNBC9UTFb8DXv", /* main-index: 48*/
+            //"t3L1WgcyQ95vtpSgjHfgANHyVYvffJZ9iGb", /* main-index: 49*/
+            //"t3JtoXqsv3FuS7SznYCd5pZJGU9di15mdd7", /* main-index: 50*/
+            //"t3hLJHrHs3ytDgExxr1mD8DYSrk1TowGV25", /* main-index: 51*/
+            //"t3fmYHU2DnVaQgPhDs6TMFVmyC3qbWEWgXN", /* main-index: 52*/
+            //"t3T4WmAp6nrLkJ24iPpGeCe1fSWTPv47ASG", /* main-index: 53*/
+            //"t3fP6GrDM4QVwdjFhmCxGNbe7jXXXSDQ5dv", /* main-index: 54*/
+        };
         assert(vFoundersRewardAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
+        assert(vDAOAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
     }
 };
 static CMainParams mainParams;
@@ -267,24 +335,38 @@ public:
             0
         };
 
-        // Founders reward script expects a vector of 2-of-3 multisig addresses
+        // Allocation script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
-	/*
-            "t2UNzUUx8mWBCRYPRezvA363EYXyEpHokyi", "t2N9PH9Wk9xjqYg9iin1Ua3aekJqfAtE543", "t2NGQjYMQhFndDHguvUw4wZdNdsssA6K7x2", "t27ktmq1kbeCWiQ5TZ7w5npSzcdbBmTB7v6",
-            "t2GcBttAKD2WTHka8HyGc2dfvVTKYZUfHmJ", "t2Q3vxWaD9LrdqUE8Xd9Ddjpr9pUQ2aGotK", "t2TTfWDsYu998fHWzVP9Gns4fgxXXRi1Wzu", "t2KS6R4MMWdSBMjLCiw2iMyhWGRQPmyRqDn",
-            "t2Q2ELrgotWv3Eec6LEtMMiiQ8dtW38u8Tj", "t2AEgJA88vTWAKqxJDFUEJWyHUtQAZi5G1D", "t2HCSdmpq1TQKksuwPQevwAzPTgfJ2rkMbG", "t2HQCPFAUQaUdJWHPhg5pPBxit7inaJzubE",
-            "t2Fzqvq8Y9e6Mn3JNPb982aYsLmq4b5HmhH", "t2HEz7YZQqDUgC5h4y2WSD3mWneqJNVRjjJ", "t2GCR1SCk687Eeo5NEZ23MLsms7JjVWBgfG", "t2KyiPR9Lztq2w1w747X6W4nkUMAGL8M9KN",
-            "t2UxymadyxSyVihmbq7S1yxw5dCBqJ1S4jT", "t2AVeMy7fdmTcJhckqiKRG8B7F1vccEhSqU", "t26m7LwihQzD2sH7ZVhYpPJM5j7kzwbfKW9", "t2DgwUNTe7NxuyPU6fxsB5xJXap3E4yWXrN",
-            "t2U6funcXA11fC9SZehyvUL3rk3Vhuh7fzS", "t284JhyS8LGM72Tx1porSqwrcq3CejthP1p", "t29egu8QcpzKeLoPLqWS6QVMnUUPQdF6eNm", "t29LqD9p9D3B26euBwFi6mfcWu8HPA38VNs",
-            "t28GsAMCxAyLy85XaasddDzaYFTtfewr86y", "t2GV44QyaikQPLUfm6oTfZnw71LLjnR7gDG", "t2U2QzNLQ1jtAu4L6xxVnRXLBsQpQvGRR2g", "t2QKGr5PNan7nrwDgseyHMN9NFeeuUjCh8b",
-            "t2AfS8u6HwBeJpKpbuxztvRjupKQDXqnrwa", "t2CTRQUViQd3CWMhnKhFnUHqDLUyTxmWhJs", "t2CbM9EqszNURqh1UXZBXYhwp1R4GwEhWRE", "t2LM7uYiAsKDU42GNSnMwDxbZ8s1DowQzYH",
-            "t2AgvT35LHR378AE3ouz6xKMhkTLHLJC6nD", "t285EAQXUVyi4NMddJv2QqTrnv45GRMbP8e", "t2EpMRCD5b8f2DCQ37npNULcpZhkjC8muqA", "t2BCmWXrRPiCeQTpizSWKKRPM5X6PS7umDY",
-            "t2DN7X6wDFn5hYKBiBmn3Z98st419yaTVTH", "t2QJj8HeCwQ6mHwqekxxDLZntYpZTHNU62t", "t2QdHBR1Yciqn4j8gpS8DcQZZtYetKvfNj3", "t2E5cpLA1ey5VNxFNcuopeQMq2rH2NHiPdu",
-            "t2EVRGtzjFAyz8CF8ndvLuiJu7qZUfDa93H", "t2KoQDk3BSFadBkuaWdLwchFuQamzw9RE4L", "t2FnR3yhTmuiejEJeu6qpidWTghRd1HpjLt", "t2BAuBAAospDc9d1u5nNGEi6x4NRJBD2PQ2",
-            "t2RtKrLCGcyPkm4a4APg1YY9Wu2m4R2PgrB", "t28aUbSteZzBq2pFgj1K1XNZRZP5mMMyakV", "t2Urdy1ERfkvsFuy6Z4BkhvYGzWdmivfAFR", "t2ADinR4JrvCMd4Q1XGALPajzFrirqvhED6",
-	*/
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t284JhyS8LGM72Tx1porSqwrcq3CejthP1p", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+            "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h", "t3J8d43gMGysce5VsMkFWxVVyQ6C2KfaR7h",
+        };
+        // Allocation script expects a vector of 2-of-3 multisig addresses
+        vDAOAddress = {
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
+            "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q", "t34Ut6vx3XHac87aXRVdT7PwS2Cj9sz1s9Q",
         };
         assert(vFoundersRewardAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
+        assert(vDAOAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
     }
 };
 static CTestNetParams testNetParams;
@@ -317,12 +399,132 @@ public:
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
         nEquihashN = N;
         nEquihashK = K;
-        genesis.nTime = 1482971059;
+        //genesis.nTime = 1482971059;
+        //genesis.nBits = 0x200f0f0f;
+        //genesis.nNonce = uint256S("0x0000000000000000000000000000000000000000000000000000000000000009");
+        //genesis.nSolution = ParseHex("05ffd6ad016271ade20cfce093959c3addb2079629f9f123c52ef920caa316531af5af3f");
+        //consensus.hashGenesisBlock = genesis.GetHash();
+
+        // start genesis builder
+        CMutableTransaction txNew;
+        txNew.vin.resize(1);
+        txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
+        txNew.vout[0].nValue = 0;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+        genesis.nTime = 1494524072;
         genesis.nBits = 0x200f0f0f;
-        genesis.nNonce = uint256S("0x0000000000000000000000000000000000000000000000000000000000000009");
-        genesis.nSolution = ParseHex("05ffd6ad016271ade20cfce093959c3addb2079629f9f123c52ef920caa316531af5af3f");
-        consensus.hashGenesisBlock = genesis.GetHash();
+        genesis.nNonce   = uint256S("0x00000000000000000000000000000000000000000000000000000000000000fd");
+        genesis.vtx.push_back(txNew);
+        genesis.hashPrevBlock.SetNull();
+        genesis.hashMerkleRoot = genesis.BuildMerkleTree();
+        genesis.nVersion = 4;
         nDefaultPort = 18133;
+
+        genesis.nTime    = 1478403829;
+        genesis.nBits    = 0x207fffff;
+        genesis.nNonce   = uint256S("0x00000000000000000000000000000000000000000000000000000000000000fd");
+
+        arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+
+        while(true){
+            genesis.nNonce =  ArithToUint256(UintToArith256(genesis.nNonce) + 1);
+            // Hash state
+            crypto_generichash_blake2b_state state;
+            EhInitialiseState(nEquihashN, nEquihashK, state);
+
+            // I = the block header minus nonce and solution.
+            CEquihashInput I{genesis};
+            CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
+            ss << I;
+
+            // H(I||...
+            crypto_generichash_blake2b_update(&state, (unsigned char*)&ss[0], ss.size());
+
+            // H(I||V||...
+            crypto_generichash_blake2b_state curr_state;
+            curr_state = state;
+            crypto_generichash_blake2b_update(&curr_state,
+                                              genesis.nNonce.begin(),
+                                              genesis.nNonce.size());
+
+            // (x_1, x_2, ...) = A(I, V, n, k)
+            LogPrint("pow", "Running Equihash solver \"%s\" with nNonce = %s\n",
+                     "tronce", genesis.nNonce.ToString());
+
+            MyNamespace::equi eq(1);
+
+            eq.setstate(&curr_state);
+
+            // Intialization done, start algo driver.
+            eq.digit0(0);
+            eq.xfull = eq.bfull = eq.hfull = 0;
+            eq.showbsizes(0);
+            for (MyNamespace::u32 r = 1; r < WK; r++) {
+                (r&1) ? eq.digitodd(r, 0) : eq.digiteven(r, 0);
+                eq.xfull = eq.bfull = eq.hfull = 0;
+                eq.showbsizes(r);
+            }
+            eq.digitK(0);
+
+            // Convert solution indices to byte array (decompress) and pass it to validBlock method.
+            for (size_t s = 0; s < eq.nsols; s++) {
+                LogPrint("pow", "Checking solution %d\n", s+1);
+                std::vector<eh_index> index_vector(MyNamespace::PROOFSIZE);
+                for (size_t i = 0; i < MyNamespace::PROOFSIZE; i++) {
+                    index_vector[i] = eq.sols[s][i];
+                }
+                std::vector<unsigned char> sol_char = GetMinimalFromIndices(index_vector, DIGITBITS);
+
+                struct bin2hex_str
+                {
+                    std::ostream& os;
+                    bin2hex_str(std::ostream& os) : os(os) {}
+                    void operator ()(unsigned char ch)
+                    {
+                        os << std::hex
+                        << std::setw(2)
+                        << static_cast<int>(ch);
+                    }
+                };
+
+                genesis.nSolution = sol_char;
+
+                std::ostringstream oss;
+                oss << std::setfill('0');
+                std::for_each(sol_char.begin(), sol_char.end(), bin2hex_str(oss));
+                std::cout << std::endl;
+                std::cout << std::endl;
+                std::cout << oss.str() << std::endl;
+                std::cout << std::endl;
+                std::cout << std::endl;
+
+                printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+                printf("block.nNonce = %s\n", genesis.nNonce.ToString().c_str());
+                printf("hashTarget = %s\n", hashTarget.ToString().c_str());
+
+
+                if (UintToArith256(genesis.GetHash()) < hashTarget) {
+                    printf("GOT HERE");
+                    std::ostringstream oss;
+                    oss << std::setfill('0');
+                    std::for_each(sol_char.begin(), sol_char.end(), bin2hex_str(oss));
+                    std::cout << std::endl;
+                    std::cout << std::endl;
+                    std::cout << oss.str() << std::endl;
+                    std::cout << std::endl;
+                    std::cout << std::endl;
+                    break;
+                }
+            }
+
+        }
+
+        genesis.nSolution = ParseHex("0046c7e5a8e651d74ac6c0dcb7b48b6d12a7af4dc4131cdeebf01a161dbf55c89e22e6e4da440a7e59e20b82caf6b714930ad33d62bc6951e54e948538a3790ddbb406164681d6f45084f0eebb3126100074d82d052269c80d01f8b2b5eb08e678720ca2f1965f807345c072bf1913051525f7b7dff2eab452609d7fd3b212af8ad17996f0b99aea81f61d5ca91cab65e859a02d458b98e856d24d6855d51f1a7e8fb9905498afba006aaa9c630bbb9ff9a11495e7672eb9fc7f1151a814c11b8f7829662778e1f1a5089e3cd15122aeb8e20f8f75aa1888dd1173343b0389e6390ed7363cc03238d063c516d3100db7bab6a2f9744b6346659d1359022f5ccf216495cfc4bd269702e22a8750e6bdf85430652c5cc4a61041b9eae93cfb4fb9a6706854c24d0463f32963a32d9790cd615ee87b4bb1d4031ad9ac3c78ef21de73de33a75cb646c84639ba8d06dbacb3032099dbb3c131786a0bab7cac7fb9e3b32c1f1dea24ab771c9056252b57d175f71bd928f59610dd898c1a953b32bd89e7252cbe07df48c72f92684dfdc4014445131ac99b7511fe10b551c5796e11fd2d10d4bd0e37159ff1b207b9b45415c95b7c4c0dcd8f5bda4032071e9b2d6041b75330f34228eee051b1a5b3e49440cf56e138a88bef5449e4560de8174d42dd5f96fe52b8241c602a68e3695d593fd9edaeeb92b57e709a07ea2c617d47d8ff6e4930ebbda42a9063fa47af371da2eaf580511242961c0436517fc23931adaeae40173f30e125870af59a512291876926623d81f3d1502bc02d8a6f4d8939850dc4e3faed27d6692633f3b213141d955af0fc598ae7f2bd0521077f6c0f7bcd0c32295cf8fcd33f6d6826c44751f07412d8d859f7262720d43ff8d3ace3239854132a52eb5ae882f7dafe6310079760edc87bf646fa0f4d5e87068406f85034008221a145e60635a5ff4295fd6c398e23b19ed6b10600099f505e79f1d8bdc0b5447400306eba56a27b0a6273470602f0769e2fc2d0af49d5513f3576b53f22fa5dfc387767c5d308f902b2574c6eedec9ff94516d121fdd88c3e4e632c952a28750f71603e78d04c8947ae9a8be476b1a02868a7ecf39216e0899d9aae2370c9f3d27b4677f5cdb6abc5e94a91d41750974133bfa6b76e1c2ec7ae3fe48ea3373682d3659786420498d05288afc6d9bcba3740ce5a114b0903fc26ce1ae884f99f504ec4c222a281e214a2ae76fd190d831e5bb173e1a51f73ccc2551d2f7b04217224fba149268604ad7cade90df2c255ec454c4de62bdbb37a8416499f71adc917bfa2e634001fab0811e2adb44e913c361df70e1a307f8c52978c2b5b04e20d8755fc9a1d9dff7e48cd94b9c629e3b41b2e39de2cf1b4e39545165fcb34dd63f9394215fb0a3e0289cc21fad11905551846dec209ce132c126bced5bad5a01ad802fa0625a69800c3e6b3f9fd00a5b1a13bbccd7af9d08a186f2fd5b63ae597d991d4acb52d1a15a0d5be201b7d1327c57021bc33e5cabcbc61691a2f3bee9d656a06b6337c352235575377b4bc91af6eb19898fef2772af4ed97e512817ec68c52bdf3fab26b3bde7f3f9d349f1646c91cec27dfea16888fe40e1a7e729f4597403c6757f71149fed44c58535cc532923e439f81a80646a78b0c4613706fa4f6f5d8e6062ec42857df1b1fa0c380dc1d78974d1ea34786bd34063be6fb900c066674f6ef929959ed1160de442ffab61c7fb2cebd1e97e9b9b3564f82f961874a8445d3967502560ec9071e349f48421863e80b3359e49cb53a734c1866a6326c7fb9c5f1fe89c0927624ddd4229dc68e745edc0af2f6eee902c5d32f9e038f04a4c99e0a8abcaa6e0efc021039d520a31dc4399283d4ff87a7aadead2b");
+
+        // end genesis builder
+
+
+
         assert(consensus.hashGenesisBlock == uint256S("0x0575f78ee8dc057deee78ef691876e3be29833aaee5e189bb0459c087451305a"));
         nPruneAfterHeight = 1000;
 
@@ -343,10 +545,11 @@ public:
             0
         };
 
-        // Founders reward script expects a vector of 2-of-3 multisig addresses
-        //vFoundersRewardAddress = { "t2FwcEhFdNXuFMv1tcYwaBJtYVtMj8b1uTg" };
-	vFoundersRewardAddress = { };
+        // Allocation script expects a vector of 2-of-3 multisig addresses
+        vFoundersRewardAddress = { "t33aqg8xUURVQVgyutfGzHAmn6nnkhFpZpL" };
+	vDAOAddress = { "t3ELub7Kz4kTHomWYdhqb4Xy2D9cWvpYnQ6" };
         assert(vFoundersRewardAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
+        assert(vDAOAddress.size() <= consensus.GetLastFoundersRewardBlockHeight());
     }
 };
 static CRegTestParams regTestParams;
@@ -401,6 +604,7 @@ std::string CChainParams::GetFoundersRewardAddressAtHeight(int nHeight) const {
 
     size_t addressChangeInterval = (maxHeight + vFoundersRewardAddress.size()) / vFoundersRewardAddress.size();
     size_t i = nHeight / addressChangeInterval;
+
     return vFoundersRewardAddress[i];
 }
 
