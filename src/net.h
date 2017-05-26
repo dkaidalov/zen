@@ -258,7 +258,7 @@ public:
     SSL_CTX *ctx;
     SSL *ssl;
     bool server_side;
-    bool establish_tls_connection();
+    bool establish_tls_connection(bool blocking=false);
 
     // socket
     uint64_t nServices;
